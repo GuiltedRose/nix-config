@@ -7,23 +7,29 @@
   home.homeDirectory = "/home/ali";
   home.packages = [ 
     pkgs.neofetch 
-    pkgs.neovim 
+    pkgs.vim 
     pkgs.discord
     pkgs.ps_mem
     pkgs.htop
     pkgs.alacritty
+    pkgs.gcc
+    pkgs.nasm
+    pkgs.qemu
   ];
   
   programs.bash.enable = false;
-  
+    
   programs.zsh = {
     enable = true; 
     shellAliases = {
       mem = "sudo ps_mem";
+      nuke = "nix-store --gc";
+      nuke-gen = "sudo nix-collect-garbage --delete-old";
+      nuke-all = "sudo nix-store --gc";
+      update-nuke = "sudo nixos-rebuild boot";
       update = "sudo nixos-rebuild switch";
       update-reboot = "sudo nixos-rebuild switch";
       upgrade = "home-manager switch";
-      vim = "nvim";
       edit = "vim .config/nixpkgs/home.nix";
       edit-system = "sudo nvim /etc/nixos/configuration.nix";
      kill-discord = "pkill .Discord-wrappe";
@@ -36,6 +42,16 @@
     '';
    
   };
+  
+  programs.vim = {
+    enable = true;
+    extraConfig = ''
+      set number
+      syntax on 
+    '';
+  
+  };
+
   nixpkgs.config.allowUnfree = true;
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
