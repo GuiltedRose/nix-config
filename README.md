@@ -17,7 +17,7 @@ home-manager
 ```
 NOTE: to install we need to reboot the system first. We also need to update home-manager from 22.11 to the newest build version.
 
-By default your nix configeration file is located in: `/home/user/.config/nixpkgs/home.nix`
+By default your nix configeration file is located in: `/home/user/.config/home-manager/home.nix`
 
 The home.nix file will be were you'll store all the user side applications.
 
